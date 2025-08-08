@@ -1,5 +1,5 @@
 // learnmate/client/src/App.js
-import React, { Suspense, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence, transform } from 'framer-motion';
 import Navbar from './components/Navbar.jsx';
@@ -11,7 +11,6 @@ import ChatBox from './components/ChatBox.jsx';
 // Spline removed – animated background added below
 
 function App() {
-  const splineRef = useRef(null);
   const [topic, setTopic] = useState('');
   const [duration, setDuration] = useState('');
   const [roadmapList, setRoadmapList] = useState([]);
