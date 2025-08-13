@@ -48,16 +48,27 @@ const ChatBox = ({ roadmapData }) => {
       // Add AI response
       const aiMessage = {
         id: messages.length + 2,
-        text: response.data.answer,
+        text: response.data.answer || "I received your question but couldn't generate a proper response.",
         sender: 'ai',
         timestamp: new Date()
       };
 
       setMessages(prev => [...prev, aiMessage]);
     } catch (error) {
+      console.error('Chat API error:', error);
+      let errorText = "Sorry, I encountered an error. Please try again.";
+      
+      if (error.response) {
+        // Server responded with error
+        errorText = error.response.data.message || "Server error occurred.";
+      } else if (error.request) {
+        // Request made but no response
+        errorText = "Unable to connect to AI service. Please check if the server is running.";
+      }
+      
       const errorMessage = {
         id: messages.length + 2,
-        text: "Sorry, I encountered an error. Please try again.",
+        text: errorText,
         sender: 'ai',
         timestamp: new Date()
       };
