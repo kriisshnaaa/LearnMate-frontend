@@ -40,7 +40,7 @@ const ChatBox = ({ roadmapData }) => {
 
     try {
       // Send question to AI API
-      const response = await axios.post('http://localhost:5000/api/openai/chat', {
+      const response = await axios.post('https://learnmate-backend-4nv0.onrender.com/api/openai/chat', {
         question: inputValue,
         roadmapContext: roadmapData
       });
